@@ -61,8 +61,8 @@ func (s *azurePipelinesScaler) GetAzurePipelinesQueueLength(ctx context.Context)
 // Returns the metric spec to be used by the HPA
 func (s *azurePipelinesScaler) GetMetricSpecForScaling() []v2beta1.MetricSpec {
 	maxJobsPerAgentQty := resource.NewQuantity(int64(defaultMaxJobsPerAgent), resource.DecimalSI)
-	targetPipelinesQueueLengthQty := resource.NewQuantity(int64(defaultTargetPipelinesQueueLength), resource.DecimalSI)
-	externalMetric := &v2beta1.ExternalMetricSource{MetricName: queueLengthMetricName, TargetAverageValue: maxJobsPerAgentQty, TargetValue: targetPipelinesQueueLengthQty}
+//	targetPipelinesQueueLengthQty := resource.NewQuantity(int64(defaultTargetPipelinesQueueLength), resource.DecimalSI)
+	externalMetric := &v2beta1.ExternalMetricSource{MetricName: queueLengthMetricName, TargetAverageValue: maxJobsPerAgentQty}
 	metricSpec := v2beta1.MetricSpec{External: externalMetric, Type: externalMetricType}
 	return []v2beta1.MetricSpec{metricSpec}
 }
